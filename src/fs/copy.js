@@ -8,10 +8,8 @@ const copy = async () => {
     let sourcePathStat;
 
     try {
-        [sourcePathStat] = await Promise.all([
-            fs.promises.readdir(sourcePath),
-            fs.promises.mkdir(distPath),
-        ]);
+        await fs.promises.readdir(sourcePath);
+        sourcePathStat = await fs.promises.mkdir(distPath);
     } catch (err) {
         throw new Error('FS operation failed');
     }
